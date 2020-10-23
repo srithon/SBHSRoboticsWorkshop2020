@@ -16,6 +16,9 @@ namespace workshop {
         pros::Motor intakeRollerLeft;
         pros::Motor intakeRollerRight;
 
+        pros::Motor liftLeft;
+        pros::Motor liftRight;
+
         Robot()
             // this->driveLeftFront = pros::Motor(PORT_DRIVE_LEFT_FRONT, DRIVE_LEFT_FRONT_REVERSED)
             // this is called a "member initializer list"
@@ -27,6 +30,8 @@ namespace workshop {
             , driveRightBack(PORT_DRIVE_RIGHT_BACK, DRIVE_RIGHT_BACK_REVERSED)
             , intakeRollerLeft(PORT_INTAKE_ROLLER_LEFT, INTAKE_ROLLER_LEFT_REVERSED)
             , intakeRollerRight(PORT_INTAKE_ROLLER_RIGHT, INTAKE_ROLLER_RIGHT_REVERSED)
+            , liftLeft(PORT_LIFT_LEFT, LIFT_LEFT_REVERSED)
+            , liftRight(PORT_LIFT_RIGHT, LIFT_RIGHT_REVERSED)
         { }
     };
 }
