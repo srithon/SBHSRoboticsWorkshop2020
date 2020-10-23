@@ -45,6 +45,23 @@ void competition_initialize() {}
  */
 void autonomous() {}
 
+void op_lift(workshop::Robot& robot, pros::Controller& controller) {
+	using namespace workshop;
+
+	if (controller.get_digital(controls::LIFT_UP)) {
+		robot.liftLeft.move_velocity(LIFT_VELOCITY);
+		robot.liftRight.move_velocity(LIFT_VELOCITY);
+	}
+	else if (controller.get_digital(controls::LIFT_DOWN)) {
+		robot.liftLeft.move_velocity(-LIFT_VELOCITY);
+		robot.liftRight.move_velocity(-LIFT_VELOCITY);
+	}
+	else {
+		robot.liftLeft.move_velocity(0);
+		robot.liftRight.move_velocity(0);
+	}
+}
+
 void op_drive(workshop::Robot& robot, pros::Controller& controller) {
 	int left = controller.get_analog(ANALOG_LEFT_Y);
 	int right = controller.get_analog(ANALOG_RIGHT_Y);
@@ -96,6 +113,7 @@ void opcontrol() {
 	while (true) {
 		op_drive(robot, master);
 		op_intake(robot, master);
+		op_lift(robot, master);
 
 		pros::delay(20);
 	}
