@@ -62,6 +62,17 @@ void competition_initialize() {}
  */
 void autonomous() {}
 
+void op_drive(workshop::Robot& robot, pros::Controller& controller) {
+	int left = controller.get_analog(ANALOG_LEFT_Y);
+	int right = controller.get_analog(ANALOG_RIGHT_Y);
+
+	robot.driveLeftFront.move(left);
+	robot.driveLeftBack.move(left);
+
+	robot.driveRightFront.move(right);
+	robot.driveRightBack.move(right);
+}
+
 /**
  * Runs the operator control code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -86,11 +97,7 @@ void opcontrol() {
 		pros::lcd::print(0, "%d %d %d", (pros::lcd::read_buttons() & LCD_BTN_LEFT) >> 2,
 		                 (pros::lcd::read_buttons() & LCD_BTN_CENTER) >> 1,
 		                 (pros::lcd::read_buttons() & LCD_BTN_RIGHT) >> 0);
-		int left = master.get_analog(ANALOG_LEFT_Y);
-		int right = master.get_analog(ANALOG_RIGHT_Y);
-
-		robot.driveLeftFront.move(left);
-		robot.driveRightFront.move(right);
+		op_drive(robot, master);
 
 		pros::delay(20);
 	}
