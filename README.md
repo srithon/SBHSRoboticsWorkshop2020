@@ -19,7 +19,7 @@ In order for `clangd` to understand your code, it needs to have a `compile_comma
 
 This file tells `clangd` how to compile your code.
 
-The `prosv5` CLI tool gives you a super convenient way of generating this file
+The `prosv5` CLI gives you a super convenient way of generating this file
 
 To generate it, run `prosv5 build-compile-commands` from anywhere in your project.
 
