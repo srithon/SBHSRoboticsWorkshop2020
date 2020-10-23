@@ -1,6 +1,7 @@
 #include "main.h"
 #include "ports.hpp"
 #include "robot.hpp"
+#include "controls.hpp"
 
 /**
  * A callback function for LLEMU's center button.
@@ -73,6 +74,23 @@ void op_drive(workshop::Robot& robot, pros::Controller& controller) {
 	robot.driveRightBack.move(right);
 }
 
+void op_intake(workshop::Robot& robot, pros::Controller& controller) {
+	using namespace workshop;
+
+	if (controller.get_digital(controls::INTAKE_SPIN_IN)) {
+		robot.intakeRollerLeft.move_voltage(-INTAKE_VOLTAGE);
+		robot.intakeRollerRight.move_voltage(-INTAKE_VOLTAGE);
+	}
+	else if (controller.get_digital(controls::INTAKE_SPIN_OUT)) {
+		robot.intakeRollerLeft.move_voltage(INTAKE_VOLTAGE);
+		robot.intakeRollerRight.move_voltage(INTAKE_VOLTAGE);
+	}
+	else {
+		robot.intakeRollerLeft.move_voltage(0);
+		robot.intakeRollerRight.move_voltage(0);
+	}
+}
+
 /**
  * Runs the operator control code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -95,6 +113,7 @@ void opcontrol() {
 
 	while (true) {
 		op_drive(robot, master);
+		op_intake(robot, master);
 
 		pros::delay(20);
 	}
