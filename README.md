@@ -26,8 +26,3 @@ To generate it, run `prosv5 build-compile-commands` from anywhere in your projec
 After you do this, install the `clangd` plugin for whichever editor you are using.
 
 If you have trouble with this and are not already using it, you can switch to [VSCode](https://code.visualstudio.com/) and install the `clangd` plugin there
-
-## Step 3 
-* setup headers 
-  * `ports.hpp` 
-  * `robot.hpp` 
