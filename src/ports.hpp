@@ -5,5 +5,7 @@ constexpr uint8_t PORT_DRIVE_LEFT_FRONT = 1;
 constexpr uint8_t PORT_DRIVE_RIGHT_FRONT = 2;
 constexpr uint8_t PORT_DRIVE_LEFT_BACK = 3;
 constexpr uint8_t PORT_DRIVE_RIGHT_BACK = 4;
+#include "stdint.h"
+
 
 #endif /* PORTS_H */
