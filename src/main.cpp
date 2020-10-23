@@ -1,4 +1,6 @@
 #include "main.h"
+#include "ports.hpp"
+#include "robot.hpp"
 
 /**
  * A callback function for LLEMU's center button.
@@ -75,8 +77,10 @@ void autonomous() {}
  */
 void opcontrol() {
 	pros::Controller master(pros::E_CONTROLLER_MASTER);
-	pros::Motor left_mtr(1);
-	pros::Motor right_mtr(2);
+
+	// unlike in Java, this will automatically call the default constructor
+	// therefore, this is not null as you may think
+	workshop::Robot robot;
 
 	while (true) {
 		pros::lcd::print(0, "%d %d %d", (pros::lcd::read_buttons() & LCD_BTN_LEFT) >> 2,
@@ -85,8 +89,8 @@ void opcontrol() {
 		int left = master.get_analog(ANALOG_LEFT_Y);
 		int right = master.get_analog(ANALOG_RIGHT_Y);
 
-		left_mtr = left;
-		right_mtr = right;
+		robot.driveLeftFront.move(left);
+		robot.driveRightFront.move(right);
 		pros::delay(20);
 	}
 }
