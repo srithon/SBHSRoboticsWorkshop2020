@@ -35,7 +35,10 @@ namespace workshop {
             , intakeRollerRight(PORT_INTAKE_ROLLER_RIGHT, INTAKE_ROLLER_RIGHT_REVERSED)
             , liftLeft(PORT_LIFT_LEFT, LIFT_LEFT_REVERSED)
             , liftRight(PORT_LIFT_RIGHT, LIFT_RIGHT_REVERSED)
-        { }
+        {
+            this->liftLeft.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+            this->liftRight.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+        }
     };
 }
 
