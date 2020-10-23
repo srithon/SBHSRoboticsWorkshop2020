@@ -7,6 +7,9 @@
 namespace workshop {
     constexpr int16_t INTAKE_VOLTAGE = 8000;
 
+    // RPM
+    constexpr int16_t LIFT_VELOCITY = 80;
+
     struct Robot {
         pros::Motor driveLeftFront;
         pros::Motor driveRightFront;
