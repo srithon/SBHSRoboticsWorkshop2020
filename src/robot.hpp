@@ -39,6 +39,8 @@ namespace workshop {
             this->liftLeft.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
             this->liftRight.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
         }
+
+        void someRobotFunction();
     };
 }
 
